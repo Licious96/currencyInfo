@@ -22,15 +22,12 @@ const App = () => {
 
     const refresh = () => {
         try {
+            document.getElementById("btn").classList.add('btn_loading')
             axios.get('http://127.0.0.1:8000/api')
             .then(response => {
                 setbaseCurrency(response.data.query.base_currency)
                 setRates(response.data.data)
-                document.getElementById("btn").classList.add('btn_loading')
-                setTimeout(function(){
-                    document.getElementById("btn").classList.remove('btn_loading')
-                }, 2000)
-                
+                document.getElementById("btn").classList.remove('btn_loading')    
             })
         } catch (error) {
             console.log(error)
